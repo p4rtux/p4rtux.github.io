@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>离婚吧-理性评估、法律指南与情感重建资源站</title>
+    <meta name="description" content="离婚吧是一个专注于婚姻法律咨询、离婚流程解析及情感重建的公益服务平台。提供离婚协议书模板、财产分割计算器、冷静期规定查询及离婚后心理调适指南。">
+    <meta name="keywords" content="离婚吧,离婚协议书,离婚流程,婚姻法律咨询,财产分割,离婚冷静期,情感咨询">
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --primary-dark: #c0392b;
+            --secondary-color: #2c3e50;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --spacing-unit: 16px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Assessment Section */
+        .assessment {
+            padding: 80px 0;
+            background-color: var(--card-bg);
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Legal Guide Section */
+        .guide {
+            padding: 80px 0;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-right: 20px;
+            min-width: 40px;
+        }
+
+        .step-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .step-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Resources Section */
+        .resources {
+            padding: 80px 0;
+            background-color: var(--card-bg);
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .resource-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .resource-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            width: 100%;
+            padding: 15px;
+            font-weight: 600;
+            backdrop-filter: blur(2px);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: white;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            background-color: #fff;
+        }
+
+        .faq-question:hover {
+            background-color: #fafafa;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-light);
+            display: none;
+            border-top: 1px solid transparent;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            padding-top: 15px;
+            border-top-color: var(--border-color);
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        /* Warning Section */
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 40px 0;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .warning h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: #bdc3c7;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <span>❤️</span> 离婚吧
+            </div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="active">首页</a>
+                <a href="#assessment">离婚评估</a>
+                <a href="#guide">流程指南</a>
+                <a href="#resources">法律文书</a>
+                <a href="#faq">常见问题</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>理性评估，<br><span>走出困境</span></h1>
+                <p>我们致力于为您提供客观的离婚决策支持、清晰的法律流程解析及必要的心理疏导指南。无论您正处于哪个阶段，这里都有您需要的答案。</p>
+                <div class="hero-actions">
+                    <a href="#assessment" class="btn btn-primary">开始自我评估</a>
+                    <a href="#guide" class="btn btn-outline">了解离婚流程</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assessment Section -->
+        <section id="assessment" class="assessment">
+            <div class="container">
+                <h2 class="section-title">离婚前评估</h2>
+                <p class="section-subtitle">在做出最终决定之前，请冷静审视婚姻现状，了解离婚可能带来的法律后果与生活变化。</p>
+                
+                <div class="assessment-grid">
+                    <article class="card">
+                        <span class="card-icon">⚖️</span>
+                        <h3>法律后果预判</h3>
+                        <p>离婚涉及财产分割、子女抚养权归属及债务承担。了解《民法典》关于婚姻家庭编的最新规定，评估自身的法律权益与风险。</p>
+                        <a href="#guide" style="color: var(--primary-color); font-weight: 600;">查看财产分割指南 &rarr;</a>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon">👶</span>
+                        <h3>子女抚养问题</h3>
+                        <p>离婚对孩子的影响深远。评估双方的抚养能力、经济条件及子女的意愿（年满8周岁），制定最有利于孩子成长的抚养方案。</p>
+                        <a href="#faq" style="color: var(--primary-color); font-weight: 600;">查看抚养权规则 &rarr;</a>
+                    </article>
+                    <article class="card">
+                        <span class="card-icon">🏠</span>
+                        <h3>财产与债务</h3>
+                        <p>婚前财产、婚后共同财产的界定，以及隐形债务的识别。避免因信息不对称导致离婚后生活质量大幅下降。</p>
+                        <a href="#resources" style="color: var(--primary-color); font-weight: 600;">下载财产分割计算器 &rarr;</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section id="guide" class="guide">
+            <div class="container">
+                <h2 class="section-title">标准离婚流程</h2>
+                <p class="section-subtitle">中国大陆地区目前的离婚方式分为协议离婚和诉讼离婚两种，流程及所需材料各不相同。</p>
+                
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>协议离婚（行政离婚）</h3>
+                            <p>夫妻双方自愿离婚，并就子女抚养、财产分割等问题达成一致意见，共同到民政局申请离婚登记。需经过30天离婚冷静期。</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>诉讼离婚（法院判决）</h3>
+                            <p>一方要求离婚，或双方对子女抚养、财产分割无法达成一致。需向法院提起离婚诉讼，法院经调解无效后判决离婚。</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>冷静期与审查</h3>
+                            <p>无论协议还是诉讼，目前均适用离婚冷静期制度。在此期间，任何一方反悔均可撤回申请，需重新计算流程。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="resources">
+            <div class="container">
+                <h2 class="section-title">常用文书与工具</h2>
+                <p class="section-subtitle">提供标准化的法律文书模板，帮助您规范表达诉求，减少不必要的法律纠纷。</p>
+                
+                <div class="resource-grid">
+                    <a href="#" class="resource-item">
+                        <img src="https://picsum.photos/seed/doc1/400/300" alt="离婚协议书模板">
+                        <div class="resource-overlay">标准离婚协议书模板</div>
+                    </a>
+                    <a href="#" class="resource-item">
+                        <img src="https://picsum.photos/seed/doc2/400/300" alt="起诉状模板">
+                        <div class="resource-overlay">民事起诉状（离婚）</div>
+                    </a>
+                    <a href="#" class="resource-item">
+                        <img src="https://picsum.photos/seed/doc3/400/300" alt="财产清单">
+                        <div class="resource-overlay">夫妻共同财产清单</div>
+                    </a>
+                    <a href="#" class="resource-item">
+                        <img src="https://picsum.photos/seed/doc4/400/300" alt="子女抚养协议">
+                        <div class="resource-overlay">子女抚养权协议书</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Warning Section -->
+        <section class="warning">
+            <div class="container">
+                <h3>⚠️ 重要提示</h3>
+                <p>本网站提供的信息仅供参考，不构成正式的法律意见。涉及重大财产分割或复杂家庭矛盾时，强烈建议咨询专业婚姻律师。</p>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <h2 class="section-title">常见问题 (FAQ)</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">什么是离婚冷静期？ <span>+</span></div>
+                    <div class="faq-answer">
+                        根据新《民法典》规定，自婚姻登记机关收到离婚登记申请之日起三十日内，任何一方不愿意离婚的，可以向婚姻登记机关撤回离婚登记申请。此期间称为离婚冷静期。期满后双方仍需共同到婚姻登记机关申请发给离婚证。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">离婚时哪些财产属于夫妻共同财产？ <span>+</span></div>
+                    <div class="faq-answer">
+                        婚姻关系存续期间所得的下列财产，归夫妻共同所有：（一）工资、奖金、劳务报酬；（二）生产、经营、投资的收益；（三）知识产权的收益；（四）继承或者受赠的财产（遗嘱或者赠与合同中确定只归一方的财产除外）；（五）其他应当归共同所有的财产。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">一方失踪如何办理离婚？ <span>+</span></div>
+                    <div class="faq-answer">
+                        如果一方下落不明，另一方可以向法院提起离婚诉讼。法院会进行公告送达，缺席判决。如果是因感情不和分居满两年，法院经调解无效，应当准予离婚。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">离婚后孩子归谁？ <span>+</span></div>
+                    <div class="faq-answer">
+                        法院判决抚养权归属时，会遵循“最有利于未成年子女”的原则。综合考虑双方的经济条件、教育背景、孩子的生活环境以及孩子的年龄和意愿（8周岁以上需尊重其真实意愿）。
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于离婚吧</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.8;">
+                        我们是一个致力于帮助人们理性处理婚姻问题的公益资源平台。提供客观、中立、实用的法律与心理支持信息。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">网站首页</a></li>
+                        <li><a href="#assessment">离婚评估</a></li>
+                        <li><a href="#guide">流程指南</a></li>
+                        <li><a href="#resources">文书下载</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>法律声明</h4>
+                    <ul>
+                        <li><a href="#">免责声明</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">服务条款</a></li>
+                        <li><a href="#">联系律师</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 离婚吧资源站 版权所有 | 仅供学习参考，不构成法律建议
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // Toggle FAQ Accordion
+        function toggleFaq(element) {
+            const parent = element.parentElement;
+            parent.classList.toggle('active');
+            
+            // Toggle the plus/minus sign
+            const icon = element.querySelector('span');
+            if (parent.classList.contains('active')) {
+                icon.textContent = '-';
+            } else {
+                icon.textContent = '+';
+            }
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
