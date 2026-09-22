@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="独弦琴之思神器攻略 - 本站提供独弦琴之思游戏中的神器获取、属性解析、培养路线及实战技巧详解，助你轻松通关。">
+    <meta name="keywords" content="独弦琴之思神器攻略, 独弦琴之思, 神器攻略, 游戏攻略, 角色养成">
+    <title>独弦琴之思神器攻略 - 获取解析与实战技巧</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --border-radius: 8px;
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #67b26f 100%);
+            color: white;
+            padding: 48px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .section-header .icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            height: 180px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            margin-top: auto;
+        }
+
+        /* Feature List */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Steps */
+        .steps-container {
+            counter-reset: step-counter;
+        }
+
+        .step-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+        }
+
+        .step-item::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 12px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background-color: #f9f9f9;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 16px 20px;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: #bdc3c7;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .nav-container {
+                padding: 0 10px;
+            }
+            nav ul {
+                display: none; /* Simplified for mobile */
+            }
+            .logo {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span>◈</span> 独弦琴之思攻略站
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#overview">神器概览</a></li>
+                    <li><a href="#acquisition">获取途径</a></li>
+                    <li><a href="#builds">搭配推荐</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>独弦琴之思神器攻略</h1>
+        <p>掌握核心神器的获取方法与培养技巧，解锁游戏深层玩法，提升通关效率与战斗表现。</p>
+    </section>
+
+    <main class="container">
+        
+        <!-- Section 1: Overview -->
+        <section id="overview">
+            <div class="section-header">
+                <span class="icon">⚔️</span>
+                <h2>神器核心机制解析</h2>
+            </div>
+            <div class="feature-list">
+                <article class="feature-item">
+                    <span class="feature-icon">🌀</span>
+                    <h3 class="feature-title">共鸣属性</h3>
+                    <p class="feature-text">神器并非单一数值提升，而是通过装备共鸣激活特定属性加成，需根据角色定位选择。</p>
+                </article>
+                <article class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">技能联动</h3>
+                    <p class="feature-text">部分神器拥有特殊技能，可与角色大招产生倍率加成或效果增幅。</p>
+                </article>
+                <article class="feature-item">
+                    <span class="feature-icon">🔮</span>
+                    <h3 class="feature-title">成长性</h3>
+                    <p class="feature-text">神器随着等级提升会解锁隐藏词条，后期属性提升显著。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section 2: Acquisition -->
+        <section id="acquisition">
+            <div class="section-header">
+                <span class="icon">🗝️</span>
+                <h2>获取途径详解</h2>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/game1/400/250" alt="副本掉落">
+                        <span class="card-badge">高概率掉落</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">深渊副本</h3>
+                        <p class="card-desc">在特定层数的深渊副本中，击败首领有几率直接掉落神器碎片或完整神器。</p>
+                        <div class="card-meta">建议等级：Lv.40+</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://picsum.photos/seed/game2/400/250" alt="活动兑换">
+                        <span class="card-badge">限时活动</span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">公会商店</h3>
+                        <p class="card-desc">积累公会贡献值，在每周刷新的商店中兑换稀有神器图纸。</p>
+                        <div class="card-meta">消耗：2000贡献</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Builds -->
+        <section id="builds">
+            <div class="section-header">
+                <span class="icon">🛠️</span>
+                <h2>实战搭配指南</h2>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">爆发流</h3>
+                        <p class="card-desc">选择增加攻击力和暴击率的神器，配合高爆发技能，快速秒杀敌人。</p>
+                        <a href="#" style="color:var(--primary-color); font-size:0.9rem; margin-top:10px; display:block;">查看详情 →</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">生存流</h3>
+                        <p class="card-desc">侧重防御与生命值加成，神器被动提供回血或减伤效果。</p>
+                        <a href="#" style="color:var(--primary-color); font-size:0.9rem; margin-top:10px; display:block;">查看详情 →</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">控制流</h3>
+                        <p class="card-desc">利用神器技能冻结或减速敌人，为队友创造输出环境。</p>
+                        <a href="#" style="color:var(--primary-color); font-size:0.9rem; margin-top:10px; display:block;">查看详情 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Steps -->
+        <section id="steps">
+            <div class="section-header">
+                <span class="icon">📋</span>
+                <h2>新手养成步骤</h2>
+            </div>
+            <div class="steps-container">
+                <div class="step-item">
+                    <h3 class="step-title">收集基础材料</h3>
+                    <p>首先在主线关卡中收集“灵韵粉尘”和“精金”，这是合成神器的基础材料，切勿浪费。</p>
+                </div>
+                <div class="step-item">
+                    <h3 class="step-title">解锁神器工坊</h3>
+                    <p>达到指定主线节点后解锁神器工坊，学习相关配方，尝试合成第一件神器。</p>
+                </div>
+                <div class="step-item">
+                    <h3 class="step-title">强化与镶嵌</h3>
+                    <p>获得神器后，使用强化石提升等级，并镶嵌宝石以激活额外的被动效果。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: FAQ -->
+        <section id="faq">
+            <div class="section-header">
+                <span class="icon">❓</span>
+                <h2>常见问题解答</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-question">神器可以交易吗？</div>
+                    <div class="faq-answer">
+                        <p>目前游戏内的神器均为绑定道具，无法直接交易给其他玩家，但可以通过分解获得少量通用材料。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">低级神器值得升级吗？</div>
+                    <div class="faq-answer">
+                        <p>神器强化有失败概率，且消耗大量资源。建议在确定主力培养角色后，集中资源升级高品质神器。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何判断神器是否适合当前关卡？</div>
+                    <div class="faq-answer">
+                        <p>观察关卡敌人的属性，例如面对高防御敌人时，优先选择带有破甲属性的神器。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">游戏下载</a>
+                <a href="#">用户协议</a>
+                <a href="#">隐私政策</a>
+            </div>
+            <p class="copyright">© 2023 独弦琴之思攻略站. 仅供玩家交流参考，游戏版权归开发商所有。</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
