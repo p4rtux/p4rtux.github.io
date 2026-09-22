@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="韩三千苏迎夏免费阅读全文最新章节，提供都市言情、豪门总裁类小说的在线阅读服务，更新及时，排版舒适。">
+    <meta name="keywords" content="韩三千苏迎夏免费阅读全文最新章节,韩三千,苏迎夏,都市小说,豪门小说,小说阅读">
+    <title>韩三千苏迎夏免费阅读全文最新章节-都市豪门经典小说在线阅读</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #c0392b;
+            --primary-hover: #a93226;
+            --secondary-color: #2c3e50;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #7f8c8d;
+            --border-radius: 8px;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .search-bar {
+            display: flex;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .search-bar input {
+            padding: 6px 15px;
+            border: none;
+            outline: none;
+            width: 200px;
+        }
+
+        .search-bar button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 60px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn-read {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(192, 57, 43, 0.3);
+        }
+
+        .btn-read:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Main Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Novel Info Section */
+        .novel-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .novel-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .novel-cover {
+            width: 180px;
+            height: 240px;
+            background-color: #eee;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .novel-meta {
+            flex: 1;
+        }
+
+        .novel-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .novel-tags span {
+            display: inline-block;
+            background-color: #fff0f0;
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+        }
+
+        .novel-stats {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: flex;
+            gap: 20px;
+        }
+
+        .novel-stats strong {
+            color: var(--secondary-color);
+        }
+
+        .novel-desc {
+            margin-top: 20px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .chapter-list h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .chapter-item {
+            background: var(--card-bg);
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chapter-item:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .chapter-item.new {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        .sidebar-widget {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .hot-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hot-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hot-rank {
+            background: var(--primary-color);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .hot-list li:nth-child(1) .hot-rank { background: #e74c3c; }
+        .hot-list li:nth-child(2) .hot-rank { background: #e67e22; }
+        .hot-list li:nth-child(3) .hot-rank { background: #f1c40f; }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: #bdc3c7;
+            padding: 40px 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .novel-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">阅界小说</div>
+            <nav class="nav-links">
+                <a href="#">首页</a>
+                <a href="#">都市言情</a>
+                <a href="#">豪门总裁</a>
+                <a href="#">排行榜</a>
+                <a href="#">书库</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索书名或作者...">
+                <button>搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>韩三千苏迎夏免费阅读全文最新章节</h1>
+            <p>阅读《最强狂婿》经典章节，体验都市豪门的情感纠葛与逆袭之路。全集更新，无广告干扰，提供舒适的阅读体验。</p>
+            <a href="#chapter-list" class="btn-read">立即阅读</a>
+        </div>
+    </section>
+
+    <main class="container main-content">
+        <!-- Left Column: Novel Content -->
+        <article class="content-area">
+            <div class="novel-card">
+                <div class="novel-header">
+                    <img src="https://picsum.photos/seed/novelcover/180/240" alt="韩三千苏迎夏封面" class="novel-cover">
+                    <div class="novel-meta">
+                        <h1 class="novel-title">韩三千苏迎夏</h1>
+                        <div class="novel-tags">
+                            <span>都市</span>
+                            <span>豪门</span>
+                            <span>言情</span>
+                            <span>逆袭</span>
+                        </div>
+                        <div class="novel-stats">
+                            <span>作者：<strong>傲天</strong></span>
+                            <span>状态：<strong>连载中</strong></span>
+                            <span>字数：<strong>500万字+</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="novel-desc">
+                    <p>韩三千，一个身世成谜的赘婿，为了给妻子苏迎夏一个家，甘愿忍受屈辱。然而，当他的真实身份被揭开，整个世界都将为之震动。本书讲述了韩三千如何在逆境中崛起，守护挚爱，成就霸业的传奇故事。</p>
+                    <br>
+                    <p>苏迎夏，京华苏家的千金，为了爱情甘愿下嫁，却遭遇了家族的排挤与丈夫的误解。在韩三千的陪伴下，她逐渐看清了生活的真相，两人携手共进，书写了一段感人至深的爱情篇章。</p>
+                </div>
+            </div>
+
+            <div class="chapter-list" id="chapter-list">
+                <h2>最新章节列表</h2>
+                <div class="chapter-grid">
+                    <div class="chapter-item new">第 2456 章 龙威</div>
+                    <div class="chapter-item new">第 2455 章 误会解除</div>
+                    <div class="chapter-item new">第 2454 章 三个条件</div>
+                    <div class="chapter-item">第 2453 章 暴风雨前的宁静</div>
+                    <div class="chapter-item">第 2452 章 暗流涌动</div>
+                    <div class="chapter-item">第 2451 章 意外的访客</div>
+                    <div class="chapter-item">第 2450 章 谁在撒谎</div>
+                    <div class="chapter-item">第 2449 章 真相大白</div>
+                    <div class="chapter-item">第 2448 章 震惊全场</div>
+                    <div class="chapter-item">第 2447 章 旧友重逢</div>
+                    <div class="chapter-item">第 2446 章 城东七少</div>
+                    <div class="chapter-item">第 2445 章 强势登场</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Right Column: Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h3 class="widget-title">阅读器设置</h3>
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size: 0.9rem;">字体大小：</label>
+                    <select style="padding: 5px; width: 100px;">
+                        <option>小</option>
+                        <option selected>中</option>
+                        <option>大</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-size: 0.9rem;">背景颜色：</label>
+                    <select style="padding: 5px; width: 100px;">
+                        <option selected>白色</option>
+                        <option>护眼</option>
+                        <option>黑色</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="widget-title">热门推荐</h3>
+                <ul class="hot-list">
+                    <li><span class="hot-rank">1</span><a href="#">绝世武神</a><span class="hot-rank">2.1万</span></li>
+                    <li><span class="hot-rank">2</span><a href="#">神级龙卫</a><span class="hot-rank">1.9万</span></li>
+                    <li><span class="hot-rank">3</span><a href="#">都市之最强狂兵</a><span class="hot-rank">1.8万</span></li>
+                    <li><span class="hot-rank">4</span><a href="#">天骄战纪</a><span class="hot-rank">1.5万</span></li>
+                    <li><span class="hot-rank">5</span><a href="#">九星霸体诀</a><span class="hot-rank">1.4万</span></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3 class="widget-title">作者专区</h3>
+                <ul class="hot-list">
+                    <li><a href="#">傲天的新书</a></li>
+                    <li><a href="#">傲天的互动</a></li>
+                    <li><a href="#">读者群号</a></li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>关于我们</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.8;">阅界小说致力于提供最优质的在线阅读体验。我们收录了海量的热门小说，包括都市、玄幻、言情等多种类型，满足不同读者的阅读需求。</p>
+                </div>
+                <div class="footer-col">
+                    <h3>热门分类</h3>
+                    <ul>
+                        <li><a href="#">都市言情</a></li>
+                        <li><a href="#">豪门总裁</a></li>
+                        <li><a href="#">玄幻修真</a></li>
+                        <li><a href="#">历史军事</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>帮助中心</h3>
+                    <ul>
+                        <li><a href="#">阅读指南</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 阅界小说 版权所有. 本站内容仅供学习交流使用，请勿用于商业用途。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
