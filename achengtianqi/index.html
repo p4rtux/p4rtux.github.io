@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿城天气-实时气温、风速与生活指数查询</title>
+    <meta name="description" content="阿城天气为您提供阿城区未来7天及24小时精准天气预报，包括实时气温、湿度、风向风力、降水概率及空气质量指数。助您规划出行、穿衣及户外活动，享受舒适生活。">
+    <meta name="keywords" content="阿城天气,阿城天气预报,哈尔滨阿城天气,阿城实时气温,阿城生活指数">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0066cc;
+            --primary-light: #e6f0fa;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --border-radius: 12px;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header & Nav */
+        header {
+            background: var(--card-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .location-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            cursor: pointer;
+        }
+
+        .location-selector svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Main Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #004c99 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .city-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .update-time {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .current-temp-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .current-temp {
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .weather-icon-lg {
+            width: 80px;
+            height: 80px;
+            fill: white;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .weather-desc {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Main Content Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        /* Cards Common */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Forecast Grid */
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+        }
+
+        .forecast-item {
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .forecast-item:hover {
+            background-color: var(--primary-light);
+        }
+
+        .forecast-date {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+
+        .forecast-icon {
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 8px;
+            fill: #555;
+        }
+
+        .forecast-temp {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .forecast-temp span {
+            font-weight: 400;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        /* Detail Grid */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Air Quality */
+        .aqi-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .aqi-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .aqi-status {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .aqi-desc {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-top: 4px;
+        }
+
+        /* Lifestyle Grid */
+        .lifestyle-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .lifestyle-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lifestyle-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .lifestyle-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-color);
+        }
+
+        .lifestyle-text h4 {
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .lifestyle-text p {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            border: 1px solid #ffeeba;
+        }
+
+        .warning-banner svg {
+            width: 20px;
+            height: 20px;
+            fill: #856404;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 40px 20px 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .lifestyle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .current-temp-container {
+                flex-direction: column;
+            }
+
+            .current-temp {
+                font-size: 4rem;
+            }
+            
+            .city-name {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/>
+                </svg>
+                气象通
+            </a>
+            <div class="location-selector" onclick="alert('更多城市选择功能即将上线')">
+                <span>阿城区</span>
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="city-name">阿城区</h1>
+                <div class="update-time">数据更新于 14:30 (北京时间)</div>
+                <div class="current-temp-container">
+                    <svg class="weather-icon-lg" viewBox="0 0 24 24">
+                        <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/>
+                    </svg>
+                    <div>
+                        <div class="current-temp">18°</div>
+                        <div class="weather-desc">多云转晴</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-container">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- 7-Day Forecast -->
+                <article class="card">
+                    <div class="card-title">
+                        未来7天预报
+                        <span style="font-size: 0.8rem; font-weight: normal; color: #999;">哈尔滨阿城</span>
+                    </div>
+                    <div class="forecast-grid">
+                        <div class="forecast-item">
+                            <div class="forecast-date">今天</div>
+                            <svg class="forecast-icon" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+                            <div class="forecast-temp">18° <span>/ 9°</span></div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="forecast-date">明天</div>
+                            <svg class="forecast-icon" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+                            <div class="forecast-temp">20° <span>/ 11°</span></div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="forecast-date">周五</div>
+                            <svg class="forecast-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                            <div class="forecast-temp">15° <span>/ 8°</span></div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="forecast-date">周六</div>
+                            <svg class="forecast-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                            <div class="forecast-temp">12° <span>/ 5°</span></div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="forecast-date">周日</div>
+                            <svg class="forecast-icon" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+                            <div class="forecast-temp">14° <span>/ 7°</span></div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="forecast-date">周一</div>
+                            <svg class="forecast-icon" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+                            <div class="forecast-temp">16° <span>/ 9°</span></div>
+                        </div>
+                        <div class="forecast-item">
+                            <div class="forecast-date">周二</div>
+                            <svg class="forecast-icon" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+                            <div class="forecast-temp">19° <span>/ 10°</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Detailed Info -->
+                <article class="card">
+                    <div class="card-title">详细气象数据</div>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">湿度</div>
+                            <div class="detail-value">45%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">风速</div>
+                            <div class="detail-value">东北风 3级</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">气压</div>
+                            <div class="detail-value">1012 hPa</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">能见度</div>
+                            <div class="detail-value">12 km</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">日出</div>
+                            <div class="detail-value">04:32</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">日落</div>
+                            <div class="detail-value">18:45</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">紫外线指数</div>
+                            <div class="detail-value">中等</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">露点</div>
+                            <div class="detail-value">6°C</div>
+                        </div>
+                    </div>
+
+                    <div class="aqi-section">
+                        <div>
+                            <div class="detail-label">空气质量 (AQI)</div>
+                            <div class="aqi-status" style="color: #28a745;">优</div>
+                            <div class="aqi-desc">空气质量令人满意，基本无空气污染。</div>
+                        </div>
+                        <div class="aqi-value" style="color: #28a745;">35</div>
+                    </div>
+                </article>
+
+                <!-- Life Index -->
+                <article class="card">
+                    <div class="card-title">生活指数</div>
+                    <div class="lifestyle-grid">
+                        <div class="lifestyle-item">
+                            <div class="lifestyle-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            </div>
+                            <div class="lifestyle-text">
+                                <h4>穿衣</h4>
+                                <p>舒适，建议长袖/薄外套</p>
+                            </div>
+                        </div>
+                        <div class="lifestyle-item">
+                            <div class="lifestyle-icon">
+                                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/><circle cx="12" cy="12" r="5"/></svg>
+                            </div>
+                            <div class="lifestyle-text">
+                                <h4>紫外线</h4>
+                                <p>中等，建议涂抹防晒霜</p>
+                            </div>
+                        </div>
+                        <div class="lifestyle-item">
+                            <div class="lifestyle-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12.5 2C8.36 2 5 5.36 5 9.5c0 4.34 5.23 10.5 6.5 10.5 1.27 0 6.5-6.16 6.5-10.5C20 5.36 16.64 2 12.5 2zm0 14.5c-1.03 0-3.5-3.85-3.5-6.5C9 7.01 10.01 6 11.5 6S14 7.01 14 10.5c0 2.65-2.47 6.5-3.5 6.5z"/></svg>
+                            </div>
+                            <div class="lifestyle-text">
+                                <h4>降水</h4>
+                                <p>无降水，适宜户外活动</p>
+                            </div>
+                        </div>
+                        <div class="lifestyle-item">
+                            <div class="lifestyle-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z"/></svg>
+                            </div>
+                            <div class="lifestyle-text">
+                                <h4>感冒</h4>
+                                <p>较少发，注意保暖</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Right Column -->
+            <aside class="right-column">
+                <div class="card">
+                    <div class="card-title">穿衣建议</div>
+                    <div style="font-size: 0.9rem; color: #555; text-align: center; padding: 20px 0;">
+                        <p style="margin-bottom: 10px;">当前气温适中，早晚温差较大。</p>
+                        <p>建议采用“叠穿”方式，内穿T恤或衬衫，外搭薄外套或卫衣。户外活动时建议携带一件防风外套。</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">出行提醒</div>
+                    <div class="warning-banner">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                        <span>无明显恶劣天气</span>
+                    </div>
+                    <ul style="list-style: none; font-size: 0.9rem; color: #555;">
+                        <li style="margin-bottom: 10px; display: flex; gap: 8px;">
+                            <span style="color: #28a745;">✔</span> 道路状况良好
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; gap: 8px;">
+                            <span style="color: #28a745;">✔</span> 能见度充足
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; gap: 8px;">
+                            <span style="color: #28a745;">✔</span> 适合骑行与步行
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">气象科普</div>
+                    <p style="font-size: 0.85rem; color: #666; line-height: 1.6;">
+                        阿城区位于松嫩平原南端，属于温带大陆性季风气候。秋季昼夜温差大，是观赏五花山色的最佳时节，同时也是防火期，请注意林区用火安全。
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>气象通</h3>
+                <p style="font-size: 0.9rem; color: #bdc3c7; line-height: 1.6;">
+                    致力于为阿城区及周边地区提供最准确、及时的气象服务，守护您的每一次出行。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h3>常用服务</h3>
+                <ul>
+                    <li><a href="#">24小时预报</a></li>
+                    <li><a href="#">生活指数查询</a></li>
+                    <li><a href="#">雷达回波图</a></li>
+                    <li><a href="#">空气质量监测</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>关于我们</h3>
+                <ul>
+                    <li><a href="#">服务条款</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                    <li><a href="#">数据来源</a></li>
+                    <li><a href="#">联系客服</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>数据来源</h3>
+                <ul>
+                    <li><a href="#">中央气象台</a></li>
+                    <li><a href="#">黑龙江省气象局</a></li>
+                    <li><a href="#">哈尔滨市阿城区气象局</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 气象通 Weather Pro. All rights reserved. 本页面数据仅供演示参考。
+        </div>
+    </footer>
+
+</body>
+</html>
